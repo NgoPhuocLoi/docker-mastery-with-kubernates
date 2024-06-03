@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import "./App.css";
 
 function App() {
   const [allValues, setAllValues] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const inputRef = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const getAllValues = async () => {
     try {
-      const res = await axios.get("/api/values/all");
+      const res = await axios.get(API_URL + "/values/all");
       console.log(res.data);
       setAllValues(res.data.values.map((val) => val.number));
     } catch (error) {
@@ -21,7 +20,7 @@ function App() {
 
   const getCurrentValues = async () => {
     try {
-      const res = await axios.get("/api/values/current");
+      const res = await axios.get(API_URL + "/values/current");
       setCurrentValues(
         Object.keys(res.data.values).map((key) => ({
           index: key,
@@ -41,7 +40,7 @@ function App() {
     e.preventDefault();
     const index = inputRef.current.value;
     try {
-      await axios.post("/api/values", {
+      await axios.post(API_URL + "/values", {
         index,
       });
       await fetchValues();
