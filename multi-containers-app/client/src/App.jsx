@@ -6,7 +6,7 @@ function App() {
   const [allValues, setAllValues] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const inputRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = "/api";
 
   const getAllValues = async () => {
     try {

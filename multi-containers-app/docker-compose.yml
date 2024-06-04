@@ -15,7 +15,7 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-  server:
+  api:
     build:
       context: ./server
     environment:
@@ -30,6 +30,10 @@ services:
     build:
       context: ./client
     environment:
-      - VITE_API_URL=http://host.docker.internal:5000
+      - WDS_SOCKET_PORT=0
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
     ports:
-      - 3000:3000
+      - 3000:80
