@@ -56,7 +56,7 @@ function App() {
 
   return (
     <>
-      <h1>Fib calculator</h1>
+      <h1>Fib calculator v2</h1>
 
       <div>
         <span>Enter your index: </span>
